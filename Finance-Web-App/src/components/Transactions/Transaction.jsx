@@ -4,7 +4,7 @@ const Transaction = (props) => {
     
 // For each object we need to create 
 //  a new transaction container after we click on AddExpense btn
-  console.log(props.verify);
+  
 
   return (
     <div className='flex place-content-between'>
@@ -18,13 +18,17 @@ const Transaction = (props) => {
                         <h1></h1>
                         <p className='text-gray-400 text-sm'>{props.date}</p>
                     </div>
+          
+        </div>
 
+        <div className='text-center align-middle flex justify-center flex-col'>
+            <h1>{props.name}</h1>
         </div>
 
                 
         <div id='price' className='text-lg flex flex-col align-middle place-content-center'>
                     
-                    <h1>-${props.money}</h1>
+                    <h1 className='text-red-300'>-${props.money}</h1>
 
         </div>
     </div>

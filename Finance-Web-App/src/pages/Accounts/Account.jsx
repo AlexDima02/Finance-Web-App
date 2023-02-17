@@ -5,7 +5,9 @@ import { AddYourAccounts } from './components/AddYourAccount/AddYourAccounts';
 
 
 function Account(props) {
-
+ 
+  const account = props.accounts?.map(el => el.account);
+ 
  // Open the add account menu
  const [open, setOpenAccountMenu] = useState(false);
  const onClose = () => setOpenAccountMenu(!open);
@@ -79,11 +81,14 @@ const openMenu = () => {
   function handleSubmit(e) {
         
     e.preventDefault(); 
+    // Take accounts written accounts 
     props.onSubmit({ ...accounts, id: Math.floor(Math.random() * 1000) });
     setAccounts({ ...accounts });
+
     
   }
 
+  
   
   return (
     <div className='max-w-full relative border-2 border-blue-800 px-8 m-auto min-h-screen'>
@@ -95,7 +100,7 @@ const openMenu = () => {
             <div className='bg-red-brown w-full py-3 px-4'>
                 <h1>Bank Accounts</h1>
             </div>
-            {props.accounts.filter(el => el.type == 'Bank Account').map((el) => {
+            {account?.filter(el => el.type == 'Bank Account').map((el) => {
               
             
               return(
@@ -114,7 +119,7 @@ const openMenu = () => {
             <div className='bg-red-brown w-full py-3 px-4 mt-10'>
                 <h1>Credit</h1>
             </div>
-            {props.accounts.filter(el => el.type == 'Card').map((el) => {
+            {account?.filter(el => el.type == 'Card').map((el) => {
 
                  return(
                   

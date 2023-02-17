@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 function Dashboard(props) {
 
   // States
-  // AddExpense object data
+  // AddExpense object data - transactions
   const [datas, setData] = useState([]);
   
   // // Save it in the local storage
@@ -30,6 +30,8 @@ function Dashboard(props) {
 
     // Adds new data at the beginning of the array
     setData([data, ...datas]);
+    // Bring all the transactions from AddExpense component to the state from App 
+    props.addTransaction(data, ...datas);
   
   }
   
@@ -40,9 +42,9 @@ function Dashboard(props) {
       <div className='grid gap-4 grid-cols-1 grid-rows-4 md:grid-rows-3 md:grid-cols-2'>
 
           <Budget/>
-          <TotalBalance />
-          <AddExpense onSubmit={addData}/> 
-          <TransactionList data={datas}/>
+          <TotalBalance accounts={props.accounts} transactions={props.transactions}/>
+          <AddExpense onSubmit={addData} accounts={props.accounts}/> 
+          <TransactionList data={props.transactions}/>
           
 
       </div>

@@ -11,11 +11,10 @@ const TransactionList = (props) => {
     // let days7 =  currentDate.setDate(currentDate.getDate() - 7);
     // days7 = new Date(days7);
     // console.log(days7);
-
     
     let currentDate = new Date();
-    const [records, setRecords] = useState();
-    
+    const [records, setRecords] = useState([]);
+  
     // Filter component states
    
     const [dateRange, setDateRange] = useState(false);
@@ -29,14 +28,14 @@ const TransactionList = (props) => {
     const filterByDate = () => {
         if(toDate){
           
-        let filteredData = props.data.filter((item) =>
+        let filteredData = props.data?.filter((item) =>
 
-              new Date(item.date) >= new Date(toDate) &&
-              new Date(item.date) <= new Date(fromDate)
+              new Date(item.record.date) >= new Date(toDate) &&
+              new Date(item.record.date) <= new Date(fromDate)
     
           );
 
-          setRecords(filteredData);
+        setRecords(filteredData);
           
         }
         
@@ -103,9 +102,10 @@ const TransactionList = (props) => {
            
             {records ? records.map(item => (
                     
-                    <Transaction key={item.id}
-                    money={item.money} 
-                    date={item.date}
+                    <Transaction key={item.record.id}
+                    money={item.record.money} 
+                    date={item.record.date}
+                    name={item.record.name}
                     verify={records}/>
 
 
