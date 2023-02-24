@@ -62,7 +62,7 @@ const AddExpense = (props) => {
         
         props.onSubmit({ ...data, id: Math.floor(Math.random() * 1000) });
         setData({ ...data });
-        
+        props.change();
     }
 
 

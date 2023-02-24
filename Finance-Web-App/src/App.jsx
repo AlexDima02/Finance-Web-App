@@ -31,6 +31,9 @@ function App() {
   const [transactions, setTransaction] = useState([]);
   console.log(transactions);
 
+ 
+  const [filter, setFilter] = useState([]);
+
   // Create database and follow each change inside of it
   const { data, items } = db;
   // Dexie hook - watch for changes in the database
@@ -52,8 +55,36 @@ function App() {
   // Aceste valori o sa le folosesc in Total Balance unde o sa map prin accounts si daca if este true 
   // Returneaza acele conturi care au prorpeitatii egale cu tranzactiile doar ca fac diferenta la rezultat
   // Acolo unde este false afiseaza datele fara a face calculele --> JS nu afiseaza datele in functie de true sau false chiar daca este true
-  
- 
+//  function modifyAccounts() {
+//     const arr = [];
+//     allAccounts?.map((ac) => {
+
+//       let obj = {};
+//       allTransactions?.map((trans) => {
+       
+//         if(ac.account.name === trans.record.from){
+
+//           obj['ammounts'] = ac.account.ammounts - trans.record.money;
+//           obj['name'] = ac.account.name;
+          
+
+
+//         }
+
+
+//       })
+
+//       arr.push(obj);
+
+//     })
+
+//     setFilter(arr);
+
+
+
+//   }
+
+//  console.log(filter);
   // If those two are true
   // Case edge:
   // Subtract accounts money with transaction money
@@ -61,7 +92,7 @@ function App() {
 
   // Implementation
   // Take our new array with sums and map through it to put them in the right component 
-
+  
 
  
   

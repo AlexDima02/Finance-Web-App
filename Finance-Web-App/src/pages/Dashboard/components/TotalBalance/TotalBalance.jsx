@@ -6,6 +6,37 @@ const TotalBalance = (props) => {
     const account = props.accounts?.map(el => el.account);
     const transaction = props.transactions?.map(el => el.record);
     console.log(transaction);
+    const start = () => {
+    
+        let container = [];
+    
+        account?.map((el) => {
+            console.log(el.account);
+            
+            transaction?.map((transc) => {
+    
+              if(el.name === transc.from){
+    
+                el.ammounts -= transc.money;
+                container.push({...el});
+    
+    
+              }
+               
+    
+            })
+    
+    
+        })
+
+        
+        return container;
+        
+    
+      }
+    
+      const result = start();
+      console.log(result.filter((el, index) => result.indexOf(el.name) === index));
     
 
     // Calculate total sum of money from all the accounts in USD
@@ -51,7 +82,9 @@ const TotalBalance = (props) => {
                 <h1 className='bg-gray-300 rounded-lg p-2 text-xl'>Bank account</h1>
                
                 {account?.filter(el => el.type == 'Bank Account').map((el) => {
-                    
+                    // If el.name == el.from
+                    // Return same thing but subtracting values 
+                    // Else return usual data
                     
                     return(
 

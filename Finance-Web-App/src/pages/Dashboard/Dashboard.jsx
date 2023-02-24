@@ -20,11 +20,6 @@ function Dashboard(props) {
   //   }
   // }, []);
 
-  // useEffect(() => {
-  //   // fires when todos array gets updated
-  //   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(datas));
-  // }, [datas]);
-
   // Add data in to the array
   function addData(data){
 
@@ -43,7 +38,7 @@ function Dashboard(props) {
 
           <Budget/>
           <TotalBalance accounts={props.accounts} transactions={props.transactions}/>
-          <AddExpense onSubmit={addData} accounts={props.accounts}/> 
+          <AddExpense onSubmit={addData} accounts={props.accounts} /> 
           <TransactionList data={props.transactions}/>
           
 
