@@ -1,9 +1,11 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Transaction from '../pages/Transactions/Transaction';
 
 const AddExpense = (props) => {
-
+  
+  const account = props.accounts?.map((item) => item.account);
+  console.log(account)
   // For each object we need to create a 
   //    new transaction container after we click on AddExpense btn
   // Get the inputs from the expense container
@@ -18,16 +20,34 @@ const AddExpense = (props) => {
 
   });
 
+  // const [myValue, setMyValue] = useState("Loading...");
+  const myRef = useRef(null);
   
+  // useEffect(() => {
+  //   setMyValue(myRef?.current.dataset.value);
+  // }, [myRef]);
   
+
+  const setName = (account) => {
+
+    myRef.current = account;
+    return myRef.current;
+    
+
+
+  }
+
+
   // What is happening when we click on AddExpense btn
   // Add data from the inputs inside the array
   function handleStoreInputChange(e) {
+    
     // e.target.value contains new input from onChange
     // event for input elements
     setData({ ...data, from: e.target.value });
-  
-    }
+    
+  }
+
   function handleMoneyInputChange(e) {
     // e.target.value contains new input from onChange
     // event for input elements
@@ -57,12 +77,12 @@ const AddExpense = (props) => {
 
     function handleSubmit(e) {
         
-        e.preventDefault(); // prevents browser refresh
+         // prevents browser refresh
         // trim() gets rid of string whitespace
-        
         props.onSubmit({ ...data, id: Math.floor(Math.random() * 1000) });
-        setData({ ...data });
-        props.change();
+        // setData({ ...data });
+        // props.change();
+
     }
 
 
@@ -74,14 +94,15 @@ const AddExpense = (props) => {
             <div className='flex flex-col mb-3 text-lg md:flex-col md:place-content-between'>
                 <div className='flex flex-col mb-4 pb-5'>
                     <label htmlFor="from">From</label>
-                    <select onChange={handleStoreInputChange} className='border-2 border-slate-200' name="" id="">
+                    <select onChange={(e) => handleStoreInputChange(e)} className='border-2 border-slate-200 w-1/2' name="" id="">
                         {/* <option value='Card'>Card</option>
                         <option value='Bank Account'>Bank account</option> */}
                         {props.accounts?.map((account, index) => (
-
-                            <option  key={index} value={account.account.name}>{account.account.name}</option>
+                            
+                            <option className='selector' key={index} ref={myRef} value={account.account.name} >{account.account.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{account.account.currency}</option>
 
                         ))}
+                       
                     </select>
                 </div>
                 <div className='flex flex-col pb-5 md:align-middle md:place-content-center'>
@@ -89,14 +110,14 @@ const AddExpense = (props) => {
                     <input className='border-2 border-slate-200 px-4' placeholder='Transaction name' type="text" onChange={handleOwnerInputChange}/>
                 </div>
                 <div className='flex flex-col relative align-bottom place-content-center pt-5'>
-                    <select onChange={handleCurrencyInputChange} name="currency" id="currency-selection">
+                    <select className='border-2 border-slate-200 px-4' onChange={(e) => handleCurrencyInputChange(e)} name="currency" id="currency-selection">
                         <option value="">Choose your currency!</option>
                         <option value="EUR">EUR</option>
                         <option value="USD">USD</option>
                     </select>
                     <span className='absolute z-10 right-0 bottom-[16px] bg-slate-200 px-3 py-[1px]'>{data.currency}</span>
                     {/* <label className='absolute z-10 right-[1px] bg-slate-200 px-4 py-[2px]' htmlFor="currency">USD</label> */}
-                    <input onChange={handleMoneyInputChange} className='border-2 border-slate-200 px-1 my-4' type="number" name='currency'/>
+                    <input onChange={handleMoneyInputChange} className='border-2 border-slate-200 px-4 my-4' type="number" name='currency'/>
                 </div>
 
             </div>
@@ -105,7 +126,7 @@ const AddExpense = (props) => {
                 <input onChange={handleDateInputChange} className='w-full' type="date" />
 
             </div>
-            <button onClick={handleSubmit} className='hover:bg-red-400 hover:transition-colors duration-150 bg-red-brown text-white text-lg rounded-lg w-full py-3'>Add Expense</button>
+            <button type='submit' className='hover:bg-red-400 hover:transition-colors duration-150 bg-red-brown text-white text-lg rounded-lg w-full py-3'>Add Expense</button>
         </form>
         
     </div>
@@ -113,3 +134,11 @@ const AddExpense = (props) => {
 }
 
 export {AddExpense};
+
+
+// Afiseaza EUR sau USD in functie de ce from ai
+// Daca Laura are cont in USD sau EUR, cand selectam Laura in USD ne va afisa currency la tranzactie automat in USD
+
+// Scadem banii din tranzactii din conturi
+
+// Modificam bugetul in functie de cati bani exista

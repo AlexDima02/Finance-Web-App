@@ -36,10 +36,10 @@ function Dashboard(props) {
     <div className='max-w-6xl relative px-8 m-auto min-h-screen'>
       <div className='grid gap-4 grid-cols-1 grid-rows-4 md:grid-rows-3 md:grid-cols-2'>
 
-          <Budget/>
+          <Budget accounts={props.accounts} transactions={props.transactions}/>
           <TotalBalance accounts={props.accounts} transactions={props.transactions}/>
           <AddExpense onSubmit={addData} accounts={props.accounts} /> 
-          <TransactionList data={props.transactions}/>
+          <TransactionList accounts={props.accounts} data={props.transactions}/>
           
 
       </div>

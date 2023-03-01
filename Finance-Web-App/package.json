@@ -9,6 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.11",
     "dexie": "^4.0.0-alpha.4",
     "dexie-react-hooks": "^1.1.1",
     "localforage": "^1.10.0",

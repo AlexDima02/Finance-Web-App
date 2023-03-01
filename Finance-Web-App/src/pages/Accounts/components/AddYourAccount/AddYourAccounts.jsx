@@ -10,7 +10,7 @@ const AddYourAccounts = (props) => {
       
 
   return (
-    <div className={`${props.isOpen  ? 'block' : 'hidden'} m-auto h-auto bg-gray-300 rounded-xl p-1 font-bold w-1/2 text-grey-letter text-lg md:grid md:col-span-2`} ref={props.click}>
+    <div className={`${props.isOpen  ? 'block' : 'hidden'} m-auto h-auto bg-gray-300 rounded-xl p-1 font-bold text-grey-letter text-lg md:grid md:col-span-2 md:w-1/2`} ref={props.click}>
     <form action="" onSubmit={props.submit}>
         <div className='flex place-content-around w-full border-b border-grey-letter mb-10 py-5'>
                 <div className='w-5 h-5'><img className='w-full h-full' src="" alt="" /></div>
@@ -48,7 +48,7 @@ const AddYourAccounts = (props) => {
         
             </div>
 
-            <button className='hover:bg-red-400 hover:transition-colors duration-150 bg-red-brown text-white text-lg rounded-lg w-full py-3 mt-5' onClick={props.submit}>Save account</button>
+            <button className='hover:bg-red-400 hover:transition-colors duration-150 bg-red-brown text-white text-lg rounded-lg w-full py-3 mt-8 mb-3' onClick={props.submit}>Save account</button>
         </div>
     </form>
     </div>

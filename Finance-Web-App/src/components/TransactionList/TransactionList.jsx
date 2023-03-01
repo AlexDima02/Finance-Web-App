@@ -14,7 +14,8 @@ const TransactionList = (props) => {
     
     let currentDate = new Date();
     const [records, setRecords] = useState([]);
-  
+    console.log(records)
+    console.log(props.data)
     // Filter component states
    
     const [dateRange, setDateRange] = useState(false);
@@ -74,15 +75,12 @@ const TransactionList = (props) => {
     };
 
    
-
-
   return (
     <div className='h-auto bg-white rounded-xl p-7 font-bold text-grey-letter text-lg md:grid md:col-span-2'>
-        <div className='flex place-content-between'>
+        <div className='flex place-content-between mb-6'>
             <h1>Recent transactions</h1>
-{/* Needs to be transformed into a component this filter */}
             <div>
-                <select name='isAvailable' onChange={handleDateChange} className='border-2 border-slate-200'>
+                <select name='isAvailable' onChange={(e) => handleDateChange(e)} className='border-2 border-slate-200'>
                     <option value={getPastDate(1)}>Today</option>
                     <option value={getPastDate(2)}>Yesterday</option>
                     <option value={getPastDate(7)}>Last 7 days</option>
@@ -102,15 +100,31 @@ const TransactionList = (props) => {
            
             {records ? records.map(item => (
                     
-                    <Transaction key={item.record.id}
+                    <Transaction key={item.id}
                     money={item.record.money} 
                     date={item.record.date}
                     name={item.record.name}
-                    verify={records}/>
+                    currency={item.record.currency}
+                    verify={item.id}
+                    from={item.record.from}
+                    allData={props.accounts}
+                    allTransaction={records}/>
 
 
-            )) : null}
-               
+            )) :  props.data?.map((list) => {
+                return <Transaction 
+                verify={list.id}
+                money={list.record.money} 
+                date={list.record.date}
+                name={list.record.name}
+                currency={list.record.currency} 
+                from={list.record.from}
+                allData={props.accounts}
+                allTransaction={props.data}/>
+            })  
+            
+            }
+            
             
             
                

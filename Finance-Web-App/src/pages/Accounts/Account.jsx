@@ -91,7 +91,7 @@ const openMenu = () => {
   
   
   return (
-    <div className='max-w-full relative border-2 border-blue-800 px-8 m-auto min-h-screen'>
+    <div className='w-full border-2 border-blue-800 px-8 m-auto min-h-screen md:w-1/2'>
         <div className={`${open ? 'absolute bottom-1/2 top-1/2 right-[50%] left-[0%]  w-full h-max z-10' : 'hidden'}  flex flex-col justify-center align-middle  bg-gray-500 bg-opacity-50 m-auto min-h-screen`}>
           <AddYourAccounts switchCurrency={accounts.currency} name={handleNameInputChange} type={handleTypeInputChange} ammounts={handleAmmountsInputChange} currency={handleCurrencyInputChange} submit={handleSubmit} click={click} isOpen={open}/>
         </div>

@@ -39,8 +39,7 @@ function App() {
   // Dexie hook - watch for changes in the database
   const allAccounts = useLiveQuery(() => data.toArray(), []);
   const allTransactions = useLiveQuery(() => items.toArray(), []);
-
-
+  
   
 
   // If every from from the transaction is equal to every name from the accounts object
@@ -55,36 +54,8 @@ function App() {
   // Aceste valori o sa le folosesc in Total Balance unde o sa map prin accounts si daca if este true 
   // Returneaza acele conturi care au prorpeitatii egale cu tranzactiile doar ca fac diferenta la rezultat
   // Acolo unde este false afiseaza datele fara a face calculele --> JS nu afiseaza datele in functie de true sau false chiar daca este true
-//  function modifyAccounts() {
-//     const arr = [];
-//     allAccounts?.map((ac) => {
-
-//       let obj = {};
-//       allTransactions?.map((trans) => {
-       
-//         if(ac.account.name === trans.record.from){
-
-//           obj['ammounts'] = ac.account.ammounts - trans.record.money;
-//           obj['name'] = ac.account.name;
-          
-
-
-//         }
-
-
-//       })
-
-//       arr.push(obj);
-
-//     })
-
-//     setFilter(arr);
-
-
-
-//   }
-
-//  console.log(filter);
+  
+  
   // If those two are true
   // Case edge:
   // Subtract accounts money with transaction money
@@ -115,7 +86,8 @@ function App() {
 
     // Bring data from the function
     // Insert new data in the array and keep old data to it
-    setTransaction([record, ...transactions]);
+    console.log(record)
+    setTransaction(record);
 
     await items.add({
 
@@ -133,7 +105,7 @@ function App() {
       <SideBar status={open}/>
       <Routes>
         <Route exact path='/' element={<Dashboard accounts={allAccounts} addTransaction={addTransactions} transactions={allTransactions} />}/>
-        <Route exact path='/transaction' element={<Transaction />}/>
+        <Route exact path='/transaction' element={<Transaction transactions={allTransactions}/>}/>
         <Route exact path='/account' element={<Account accounts={allAccounts} onSubmit={addAccounts}/>}/>
       </Routes>
     </>
